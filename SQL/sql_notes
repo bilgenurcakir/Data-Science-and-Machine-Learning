@@ -7,8 +7,8 @@
 CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY,name VARCHAR,surname VARCHAR);
 
 --INSERT INTO students(name,surname) VALUES ('bilgenur','çakır');
---INSERT INTO students(name,surname) VALUES ('zumranur','kardeşşş');
---INSERT INTO students(name,surname) VALUES ('hatice','anne');
---INSERT INTO students(name,surname) VALUES ('akın','baba');
+--INSERT INTO students(name,surname) VALUES ('semanur','yılmaz');
+--INSERT INTO students(name,surname) VALUES ('nesibe','bulut');
+--INSERT INTO students(name,surname) VALUES ('mine','ünal');
 
 SELECT * FROM students;
