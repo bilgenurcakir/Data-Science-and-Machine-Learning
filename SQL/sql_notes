@@ -1,1 +1,14 @@
+--INSERT INTO demo (name,hint) VALUES ('Bilge','test');
+--UPDATE demo SET name='Çakır' WHERE id=29;
+--DELETE FROM demo WHERE id=29;
+--SELECT * FROM demo;
+-- DROP TABLE demo;
 
+CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY,name VARCHAR,surname VARCHAR);
+
+--INSERT INTO students(name,surname) VALUES ('bilgenur','çakır');
+--INSERT INTO students(name,surname) VALUES ('zumranur','kardeşşş');
+--INSERT INTO students(name,surname) VALUES ('hatice','anne');
+--INSERT INTO students(name,surname) VALUES ('akın','baba');
+
+SELECT * FROM students;
