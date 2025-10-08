@@ -1,6 +1,6 @@
 import os
 import sqlite3
-
+from idlelib.squeezer import count_lines_with_wrapping
 
 
 def create_database():
@@ -149,6 +149,75 @@ def aggregate_functions(cursor):
     result=cursor.fetchall()
     print(result)
 
+def questions(cursor):
+
+    #tüm kurs bilgilerini getir
+    print("\n--------tüm kurs bilgilerini getir---------")
+    cursor.execute("SELECT * FROM courses")
+    results=cursor.fetchall()
+    print(results)
+
+    #sadece eğitmen isimlerini ve ders isimlerini getir
+    print("\n--------sadece eğitmen isimlerini ve ders isimlerini getir---------")
+    cursor.execute("SELECT instructor, course name FROM courses")
+    results=cursor.fetchall()
+    print(results)
+
+    #sadece 21 yasındaki oğrenciler
+    print("\n--------sadece 21 yasındaki oğrenciler---------")
+    cursor.execute("SELECT * FROM students WHERE age = 21")
+    results=cursor.fetchall()
+    print(results)
+
+    #sadece chicago da yaşayanlar
+    print("\n--------sadece chicago da yaşayanlar---------")
+    cursor.execute("SELECT * FROM students WHERE city ='Chicago'")
+    results=cursor.fetchall()
+    print(results)
+
+    #sadece  'dr. anderson' tarafından  verilen dersler
+    print("\n--------sadece 'dr. anderson' tarafından  verilen dersler--------")
+    cursor.execute("SELECT course name FROM courses WHERE instructor='Dr. Anderson' ")
+    results=cursor.fetchall()
+    print(results)
+
+    #sadece ismi A ile başlayan öğrenciler
+    print("\n--------sadece ismi A ile başlayan öğrenciler--------")
+    cursor.execute("SELECT * FROM students WHERE name LIKE 'A%' ")
+    results=cursor.fetchall()
+    print(results)
+
+    #sadece 3 ve üzeri kredi olan dersler
+    print("\n--------sadece 3 ve üzeri kredi olan dersler--------")
+    cursor.execute("SELECT * FROM courses WHERE credits >=3")
+    results=cursor.fetchall()
+    print(results)
+
+    ## öğrencileri alfabetik dizerek getirin
+    print("\n--------alfabetik ogrenciler--------")
+    cursor.execute("SELECT * FROM students ORDER BY name")
+    results = cursor.fetchall()
+    print(results)
+
+    ## 20 yaşından büyük ögrencileri ismine göre sırala
+    print("\n--------20 yaşından büyük ögrencileri ismine göre sırala--------")
+    cursor.execute("SELECT * FROM students WHERE age>20 ORDER BY name")
+    results = cursor.fetchall()
+    print(results)
+
+    ## sadece 'New York' veya 'Chicago' da yaşayan ögrencileri
+    print("\n--------sadece 'New York' veya 'Chicago' da yaşayan ögrencileri-------")
+    cursor.execute("SELECT * FROM students WHERE city IN('New York','Chicago')")
+    #cursor.execute("SELECT * FROM students WHERE city ='New York' OR city='Chicago'")
+    results = cursor.fetchall()
+    print(results)
+
+    ## sadece ' New York' ta yasamayan ögrencileri
+    print("\n--------sadece 'New York' ta yasamayan ögrencileri-------")
+    cursor.execute("SELECT * FROM students WHERE city !='New York'")
+   # cursor.execute("SELECT * FROM students WHERE NOT city='New York'")
+    results = cursor.fetchall()
+    print(results)
 
 
 
@@ -162,6 +231,8 @@ def main():
     basic_sql_operations(cursor)
     sql_update_delete_insert_oparations(conn,cursor)
     aggregate_functions(cursor)
+    questions(cursor)
+
     conn.commit() # cursor'ın yaptıgı isleri uygula
 
   except sqlite3.Error as e:
